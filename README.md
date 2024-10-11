@@ -108,14 +108,14 @@ This will give us a **clean starting** point to handle the refactoring process m
 
 ---
 
-# Step 3: Writing Your First Function
+# Step 3: Writing Your First Functions
 In this step, we will write our first reusable function to handle console logging. By creating a single function to manage our `console.log()` statements, we can improve code organization and make it easier to update or extend the functionality in the future. 
 
 ### Goal:
 
 The goal of this step is to create a function called `logMessage()` that takes a message as a parameter and logs it to the console. This will allow you to use this function throughout your code whenever you need to print messages, ensuring consistency and readability.
 
-- [ ] Write a reusable functions to centralize all logging in your application, as shown in the code below.
+- [ ] Write reusable functions to centralize all logging in your application, as shown in the code below.
 
 
 ```javascript
