@@ -259,14 +259,16 @@ const displayFeaturedProducts = (products, numberOfFeatured) => {
 ```
 
 ### Explanation
-    - **Parameters**: The function takes two arguments: `products` (an array of all store products) and `numberOfFeatured` (the number of products to feature). This allows the function to dynamically handle any number of products.
-    - **Sorting Products**: The function uses the `sort()` method to sort the `products` array alphabetically. The `spread operator` (`...products`) is used to create a new array that does not modify the original `products` array.
-      
-      - **What is the `...` (Spread Operator)?**: The spread operator (`...`) is used to "spread out" the elements of an array into a new array. In this case, `...products` takes all the elements of the `products` array and puts them into a new array (`sortedProducts`). This ensures the original `products` array is not modified when sorting.
-      
-    - **Selecting Featured Products**: The function then uses the `forEach()` method to loop through the sorted products and push the top `numberOfFeatured` products into the `featuredProducts` array. Only the number of products specified by `numberOfFeatured` are selected.
-    - **Reusing `logMessage()`**: Once the featured products are selected, the function calls `logMessage()` to announce the featured products, and then it loops through the `featuredProducts` array using `forEach()` to log each product. This ensures that the message and products are displayed consistently across the application.
 
+- **Parameters**: The function takes two arguments: `products` (an array of all store products) and `numberOfFeatured` (the number of products to feature). This allows the function to dynamically handle any number of products.
+
+- **Sorting Products**: The function uses the `sort()` method to sort the `products` array alphabetically. The `spread operator` (`...products`) is used to create a new array that does not modify the original `products` array.
+
+  - **What is the `...` (Spread Operator)?**: The spread operator (`...`) is used to "spread out" the elements of an array into a new array. In this case, `...products` takes all the elements of the `products` array and puts them into a new array (`sortedProducts`). This ensures the original `products` array is not modified when sorting.
+  
+- **Selecting Featured Products**: The function then uses the `forEach()` method to loop through the sorted products and push the top `numberOfFeatured` products into the `featuredProducts` array. Only the number of products specified by `numberOfFeatured` are selected.
+
+- **Reusing `logMessage()`**: Once the featured products are selected, the function calls `logMessage()` to announce the featured products, and then it loops through the `featuredProducts` array using `forEach()` to log each product. This ensures that the message and products are displayed consistently across the application.
 ### Nested Function Calls
   - **Calling `logMessage()` Within a Loop**: You are calling `logMessage()` multiple times within the same function, first to log the announcement and then to log each individual product. This demonstrates how functions can be called inside other functions or loops, making the code modular and reusable.
 
