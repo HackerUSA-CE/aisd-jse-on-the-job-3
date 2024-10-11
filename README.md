@@ -335,7 +335,7 @@ By using this function, you can easily sort the store's products by price and di
 ---
 
 
-# Step 9: Running the Full Program with Sub-Steps
+# Step 9: Calling the Functions
 
 In this step, we will bring together all the functions created so far. Each function will be called in sequence to perform specific tasks, such as displaying store info, adding or removing products, displaying featured items, and sorting the inventory by price. Each function call is explained briefly to ensure clarity on what is happening and what parameters are being passed.
 
