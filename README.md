@@ -344,9 +344,9 @@ The goal of this step is to call each function in the correct order and pass the
 
 ---
 
-### Sub-Steps:
+### Steps:
 
-#### 9-a: Initial Display of Store Information
+#### 9a: Initial Display of Store Information
 - [ ] Call the `displayStoreInfo()` function to show the store's name and type.
   
 ```javascript
@@ -357,7 +357,7 @@ Explanation: This step calls the `displayStoreInfo()` function and passes two pa
 
 ---
 
-#### 9-b: Initial Display of Products and Prices
+#### 9b: Initial Display of Products and Prices
 - [ ] Call the `displayInventory()` function to show the current products and their prices in the store.
 
 ```javascript
@@ -368,7 +368,7 @@ Explanation: The `displayInventory()` function is called, which takes `products`
 
 ---
 
-#### 9-c: Adding a New Product
+#### 9c: Adding a New Product
 - [ ] Call the `addProduct()` function to add a new product (Pet Shampoo) to the store's inventory.
 
 ```javascript
@@ -379,7 +379,7 @@ Explanation: The `addProduct()` function is called with the `products` and `pric
 
 ---
 
-#### 9-d: Removing the Last Product
+#### 9d: Removing the Last Product
 - [ ] Call the `removeLastProduct()` function to remove the last product from the store's inventory.
 
 ```javascript
@@ -390,7 +390,7 @@ Explanation: The `removeLastProduct()` function removes the last product from th
 
 ---
 
-#### 9-e: Displaying Featured Products
+#### 9e: Displaying Featured Products
 - [ ] Call the `displayFeaturedProducts()` function to show a selection of featured products.
 
 ```javascript
@@ -401,7 +401,7 @@ Explanation: The `displayFeaturedProducts()` function displays the first 3 produ
 
 ---
 
-#### 9-f: Sorting and Displaying Products by Price
+#### 9f: Sorting and Displaying Products by Price
 - [ ] Call the `sortInventoryByPrice()` function to sort the products and prices in ascending order and display them.
 
 ```javascript
@@ -412,7 +412,7 @@ Explanation: The `sortInventoryByPrice()` function combines the products and pri
 
 ---
 
-#### 9-g: Closing Logs
+#### 9g: Closing Logs
 - [ ] Use `logMessage()` to print a closing message thanking visitors and displaying the store hours.
 
 ```javascript
