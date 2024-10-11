@@ -108,14 +108,14 @@ This will give us a **clean starting** point to handle the refactoring process m
 
 ---
 
-# Step 3: Writing Your First Function
+# Step 3: Writing Your First Functions
 In this step, we will write our first reusable function to handle console logging. By creating a single function to manage our `console.log()` statements, we can improve code organization and make it easier to update or extend the functionality in the future. 
 
 ### Goal:
 
 The goal of this step is to create a function called `logMessage()` that takes a message as a parameter and logs it to the console. This will allow you to use this function throughout your code whenever you need to print messages, ensuring consistency and readability.
 
-- [ ] Write a reusable functions to centralize all logging in your application, as shown in the code below.
+- [ ] Write reusable functions to centralize all logging in your application, as shown in the code below.
 
 
 ```javascript
@@ -259,23 +259,83 @@ const displayFeaturedProducts = (products, numberOfFeatured) => {
 ```
 
 ### Explanation
-    - **Parameters**: The function takes two arguments: `products` (an array of all store products) and `numberOfFeatured` (the number of products to feature). This allows the function to dynamically handle any number of products.
-    - **Sorting Products**: The function uses the `sort()` method to sort the `products` array alphabetically. The `spread operator` (`...products`) is used to create a new array that does not modify the original `products` array.
-      
-      - **What is the `...` (Spread Operator)?**: The spread operator (`...`) is used to "spread out" the elements of an array into a new array. In this case, `...products` takes all the elements of the `products` array and puts them into a new array (`sortedProducts`). This ensures the original `products` array is not modified when sorting.
-      
-    - **Selecting Featured Products**: The function then uses the `forEach()` method to loop through the sorted products and push the top `numberOfFeatured` products into the `featuredProducts` array. Only the number of products specified by `numberOfFeatured` are selected.
-    - **Reusing `logMessage()`**: Once the featured products are selected, the function calls `logMessage()` to announce the featured products, and then it loops through the `featuredProducts` array using `forEach()` to log each product. This ensures that the message and products are displayed consistently across the application.
 
-### Nested Function Calls
-  - **Calling `logMessage()` Within a Loop**: You are calling `logMessage()` multiple times within the same function, first to log the announcement and then to log each individual product. This demonstrates how functions can be called inside other functions or loops, making the code modular and reusable.
+- **Parameters**: The function takes two arguments: `products` (an array of all store products) and `numberOfFeatured` (the number of products to feature). This allows the function to dynamically handle any number of products.
+  
+- **Sorting Products**: The function uses the `sort()` method to sort the `products` array alphabetically. The `spread operator` (`...products`) is used to create a new array that does not modify the original `products` array.
+  
+- **What is the `...` (Spread Operator)?**: The spread operator (`...`) is used to "spread out" the elements of an array into a new array. In this case, `...products` takes all the elements of the `products` array and puts them into a new array (`sortedProducts`). This ensures the original `products` array is not modified when sorting.
+  
+- **Selecting Featured Products**: The function then uses the `forEach()` method to loop through the sorted products and push the top `numberOfFeatured` products into the `featuredProducts` array. Only the number of products specified by `numberOfFeatured` are selected.
+  
+- **Reusing `logMessage()`**: Once the featured products are selected, the function calls `logMessage()` to announce the featured products, and then it loops through the `featuredProducts` array using `forEach()` to log each product. This ensures that the message and products are displayed consistently across the application.
+
+  ### Nested Function Calls
+    - **Calling `logMessage()` Within a Loop**: You are calling `logMessage()` multiple times within the same function, first to log the announcement and then to log each individual product. This demonstrates how functions can be called inside other functions or loops, making the code modular and reusable.
 
 By understanding how to call functions within functions, you’ll see how tasks like sorting, selecting, and logging can be managed in an organized and efficient way.
 
 ---
 
 
-# Step 9: Running the Full Program with Sub-Steps
+# Step 8: Sorting Products and Prices by Price (Low to High)
+
+In this step, you will create a function to sort the store’s products and their corresponding prices from low to high. The function will use the arrow function syntax and the `forEach()` method to combine the products and prices into an array of objects, and then it will sort the array by price.
+
+### Goal:
+The goal is to write a function called `sortInventoryByPrice()` that takes two parameters: `products` and `prices`. This function will create an array of objects that link each product with its corresponding price, and then sort this array by price in ascending order.
+
+- [ ] Write a function called `sortInventoryByPrice()` that combines products and prices into an array of objects using the `forEach()` method.
+
+```javascript
+// Function to sort products and prices by price (low to high)
+const sortInventoryByPrice = (products, prices) => {
+  // Create an array of objects to link products and prices
+  const combinedArray = [];
+
+  products.forEach((product, index) => {
+    combinedArray.push({ product: product, price: prices[index] });
+  });
+
+  // Sort combined array by price
+  combinedArray.sort((a, b) => a.price - b.price);
+
+  logMessage("Products sorted by price (low to high):");
+  combinedArray.forEach((item) => {
+    logMessage(`${item.product}: $${item.price}`);
+  });
+};
+```
+
+### Explanation
+
+- **Parameters**: The function takes two arguments: 
+  - `products`: an array containing all the products in the store.
+  - `prices`: an array of corresponding prices for each product. These arrays are linked by their index, meaning the price at index 0 in the `prices` array corresponds to the product at index 0 in the `products` array.
+  
+  By passing these two arrays into the function, both products and their respective prices are managed together.
+
+- **Combining Products and Prices with `forEach()`**: 
+  - The function uses the `forEach()` method to loop through the `products` array.
+  - For each product in the `products` array, the function retrieves the corresponding price from the `prices` array using the same index.
+  - It then creates an object with two properties: `product` (the product name) and `price` (the product price). These objects are stored in a new array called `combinedArray`, which holds each product and its corresponding price.
+
+- **Sorting by Price**: 
+  - After combining the products and prices, the function uses the `sort()` method to sort the `combinedArray` based on the price.
+  - The sorting function compares the prices of each object in the array (`a.price - b.price`). If the result is negative, `a` will appear before `b`, effectively sorting the array from the lowest to highest price.
+
+- **Logging the Sorted Products**: 
+  - Once the array is sorted, the function calls `logMessage()` to print a message indicating that the products are now sorted by price.
+  - It then uses another `forEach()` loop to go through the sorted `combinedArray` and logs each product and its price in the new sorted order.
+
+By using this function, you can easily sort the store's products by price and display the sorted results in a clear format. This approach demonstrates how to manage related data (products and prices) efficiently and how to process and organize it in JavaScript.
+.
+
+
+---
+
+
+# Step 9: Calling the Functions
 
 In this step, we will bring together all the functions created so far. Each function will be called in sequence to perform specific tasks, such as displaying store info, adding or removing products, displaying featured items, and sorting the inventory by price. Each function call is explained briefly to ensure clarity on what is happening and what parameters are being passed.
 
@@ -284,75 +344,75 @@ The goal of this step is to call each function in the correct order and pass the
 
 ---
 
-### Sub-Steps:
+### Steps:
 
-#### 9-a: Initial Display of Store Information
+#### 9a: Initial Display of Store Information
 - [ ] Call the `displayStoreInfo()` function to show the store's name and type.
   
 ```javascript
 displayStoreInfo(storeName, storeType);
 ```
 
-Explanation: This step calls the `displayStoreInfo()` function and passes two parameters: `storeName` and `storeType`. It prints a welcoming message for the store.
+**Explanation:** This step calls the `displayStoreInfo()` function and passes two parameters: `storeName` and `storeType`. It prints a welcoming message for the store.
 
 ---
 
-#### 9-b: Initial Display of Products and Prices
+#### 9b: Initial Display of Products and Prices
 - [ ] Call the `displayInventory()` function to show the current products and their prices in the store.
 
 ```javascript
 displayInventory(products, prices);
 ```
 
-Explanation: The `displayInventory()` function is called, which takes `products` and `prices` arrays as parameters and prints the available products along with their prices.
+**Explanation:** The `displayInventory()` function is called, which takes `products` and `prices` arrays as parameters and prints the available products along with their prices.
 
 ---
 
-#### 9-c: Adding a New Product
+#### 9c: Adding a New Product
 - [ ] Call the `addProduct()` function to add a new product (Pet Shampoo) to the store's inventory.
 
 ```javascript
 addProduct(products, prices, "Pet Shampoo", 12.0);
 ```
 
-Explanation: The `addProduct()` function is called with the `products` and `prices` arrays, and it adds a new product ("Pet Shampoo") with a price of $12.00 to the arrays. The updated inventory is displayed afterward.
+**Explanation:**  The `addProduct()` function is called with the `products` and `prices` arrays, and it adds a new product ("Pet Shampoo") with a price of $12.00 to the arrays. The updated inventory is displayed afterward.
 
 ---
 
-#### 9-d: Removing the Last Product
+#### 9d: Removing the Last Product
 - [ ] Call the `removeLastProduct()` function to remove the last product from the store's inventory.
 
 ```javascript
 removeLastProduct(products, prices);
 ```
 
-Explanation: The `removeLastProduct()` function removes the last product from the `products` and `prices` arrays, simulating the product going out of stock.
+**Explanation:**  The `removeLastProduct()` function removes the last product from the `products` and `prices` arrays, simulating the product going out of stock.
 
 ---
 
-#### 9-e: Displaying Featured Products
+#### 9e: Displaying Featured Products
 - [ ] Call the `displayFeaturedProducts()` function to show a selection of featured products.
 
 ```javascript
 displayFeaturedProducts(products, 3);
 ```
 
-Explanation: The `displayFeaturedProducts()` function displays the first 3 products in the list, which are sorted alphabetically before being displayed.
+**Explanation:**  The `displayFeaturedProducts()` function displays the first 3 products in the list, which are sorted alphabetically before being displayed.
 
 ---
 
-#### 9-f: Sorting and Displaying Products by Price
+#### 9f: Sorting and Displaying Products by Price
 - [ ] Call the `sortInventoryByPrice()` function to sort the products and prices in ascending order and display them.
 
 ```javascript
 sortInventoryByPrice(products, prices);
 ```
 
-Explanation: The `sortInventoryByPrice()` function combines the products and prices into a single array of objects, sorts them by price from lowest to highest, and displays the sorted inventory.
+**Explanation:**  The `sortInventoryByPrice()` function combines the products and prices into a single array of objects, sorts them by price from lowest to highest, and displays the sorted inventory.
 
 ---
 
-#### 9-g: Closing Logs
+#### 9g: Closing Logs
 - [ ] Use `logMessage()` to print a closing message thanking visitors and displaying the store hours.
 
 ```javascript
@@ -360,7 +420,7 @@ logMessage(`Thanks for visiting ${storeName}`);
 logMessage(`Here are our store hours for reference: ${storeHours}`);
 ```
 
-Explanation: The `logMessage()` function is used to print a friendly closing message for the customers, along with the store hours.
+**Explanation:**  The `logMessage()` function is used to print a friendly closing message for the customers, along with the store hours.
 
 ---
 
@@ -437,6 +497,7 @@ Here are our store hours for reference: Monday - Friday: 9 AM - 6 PM, Saturday: 
 
 By running this code and reviewing the output, you've successfully simulated an inventory management system with customer-facing updates!
 
+
 ## 11. **Pushing Your Code to GitHub**
 
 In this section, you will save your updated project to the **existing GitHub repository** you created last week. This allows you to continue storing your code online, collaborate with others, and keep track of changes over time.
@@ -487,7 +548,7 @@ As you continue to progress, you’ll build on this foundation to create more co
 
 💾 **Not something to copy and paste** 💾
 
-**Note:**  This lab references a solution file located [here](https://github.com/HackerUSA-CE/aisd-jse-on-the-job-2/tree/solution) (link not shown).
+**Note:**  This lab references a solution file located [here](https://github.com/HackerUSA-CE/aisd-jse-on-the-job-3/tree/solution) (link not shown).
 
 
 ---
