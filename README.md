@@ -353,7 +353,7 @@ The goal of this step is to call each function in the correct order and pass the
 displayStoreInfo(storeName, storeType);
 ```
 
-Explanation: This step calls the `displayStoreInfo()` function and passes two parameters: `storeName` and `storeType`. It prints a welcoming message for the store.
+**Explanation:** This step calls the `displayStoreInfo()` function and passes two parameters: `storeName` and `storeType`. It prints a welcoming message for the store.
 
 ---
 
@@ -364,7 +364,7 @@ Explanation: This step calls the `displayStoreInfo()` function and passes two pa
 displayInventory(products, prices);
 ```
 
-Explanation: The `displayInventory()` function is called, which takes `products` and `prices` arrays as parameters and prints the available products along with their prices.
+**Explanation:** The `displayInventory()` function is called, which takes `products` and `prices` arrays as parameters and prints the available products along with their prices.
 
 ---
 
@@ -375,7 +375,7 @@ Explanation: The `displayInventory()` function is called, which takes `products`
 addProduct(products, prices, "Pet Shampoo", 12.0);
 ```
 
-Explanation: The `addProduct()` function is called with the `products` and `prices` arrays, and it adds a new product ("Pet Shampoo") with a price of $12.00 to the arrays. The updated inventory is displayed afterward.
+**Explanation:**  The `addProduct()` function is called with the `products` and `prices` arrays, and it adds a new product ("Pet Shampoo") with a price of $12.00 to the arrays. The updated inventory is displayed afterward.
 
 ---
 
@@ -386,7 +386,7 @@ Explanation: The `addProduct()` function is called with the `products` and `pric
 removeLastProduct(products, prices);
 ```
 
-Explanation: The `removeLastProduct()` function removes the last product from the `products` and `prices` arrays, simulating the product going out of stock.
+**Explanation:**  The `removeLastProduct()` function removes the last product from the `products` and `prices` arrays, simulating the product going out of stock.
 
 ---
 
@@ -397,7 +397,7 @@ Explanation: The `removeLastProduct()` function removes the last product from th
 displayFeaturedProducts(products, 3);
 ```
 
-Explanation: The `displayFeaturedProducts()` function displays the first 3 products in the list, which are sorted alphabetically before being displayed.
+**Explanation:**  The `displayFeaturedProducts()` function displays the first 3 products in the list, which are sorted alphabetically before being displayed.
 
 ---
 
@@ -408,7 +408,7 @@ Explanation: The `displayFeaturedProducts()` function displays the first 3 produ
 sortInventoryByPrice(products, prices);
 ```
 
-Explanation: The `sortInventoryByPrice()` function combines the products and prices into a single array of objects, sorts them by price from lowest to highest, and displays the sorted inventory.
+**Explanation:**  The `sortInventoryByPrice()` function combines the products and prices into a single array of objects, sorts them by price from lowest to highest, and displays the sorted inventory.
 
 ---
 
@@ -420,7 +420,7 @@ logMessage(`Thanks for visiting ${storeName}`);
 logMessage(`Here are our store hours for reference: ${storeHours}`);
 ```
 
-Explanation: The `logMessage()` function is used to print a friendly closing message for the customers, along with the store hours.
+**Explanation:**  The `logMessage()` function is used to print a friendly closing message for the customers, along with the store hours.
 
 ---
 
