@@ -309,26 +309,27 @@ const sortInventoryByPrice = (products, prices) => {
 
 ### Explanation
 
-  - **Parameters**: The function takes two arguments: 
-    - `products`: an array containing all the products in the store.
-    - `prices`: an array of corresponding prices for each product. These arrays are linked by their index, meaning that the price at index 0 in the `prices` array corresponds to the product at index 0 in the `products` array.
-    
-  By passing these two arrays into the function, it allows us to manage both products and prices together.
-
-- **forEach Method**: The function uses the `forEach()` method to loop through the `products` array. 
-    - For each product in the `products` array, the function retrieves the corresponding price from the `prices` array (using the same index).
-    - Then, it combines each product and its price into an object with two properties: `product` (the product name) and `price` (the product price).
-    - This combined information is stored in a new array called `combinedArray`. This array now holds objects where each object represents a product and its price.
-
-- **Sorting by Price**: After the products and prices are combined into objects, the function uses the `sort()` method to sort the `combinedArray` based on the price.
-    - The sorting function compares the prices of each object in the array (`a.price - b.price`). If the result is negative, `a` will appear before `b`. This results in an array sorted from the lowest price to the highest price.
-
-- **Reusing `logMessage()`**: Once the array is sorted, the function calls `logMessage()` to print a message that indicates the products are now sorted by price. 
-    - Then, it uses another `forEach()` loop to go through the sorted `combinedArray` and log each product and its price in the new sorted order.
+- **Parameters**: The function takes two arguments: 
+  - `products`: an array containing all the products in the store.
+  - `prices`: an array of corresponding prices for each product. These arrays are linked by their index, meaning the price at index 0 in the `prices` array corresponds to the product at index 0 in the `products` array.
   
-  This ensures that the output is consistent and formatted correctly, displaying each product along with its price.
+  By passing these two arrays into the function, both products and their respective prices are managed together.
 
-By using this function, you can easily sort the store's products by price and immediately see the sorted results in a clear format. This function demonstrates how to manage related data (products and prices) and how to organize and process it efficiently in JavaScript.
+- **Combining Products and Prices with `forEach()`**: 
+  - The function uses the `forEach()` method to loop through the `products` array.
+  - For each product in the `products` array, the function retrieves the corresponding price from the `prices` array using the same index.
+  - It then creates an object with two properties: `product` (the product name) and `price` (the product price). These objects are stored in a new array called `combinedArray`, which holds each product and its corresponding price.
+
+- **Sorting by Price**: 
+  - After combining the products and prices, the function uses the `sort()` method to sort the `combinedArray` based on the price.
+  - The sorting function compares the prices of each object in the array (`a.price - b.price`). If the result is negative, `a` will appear before `b`, effectively sorting the array from the lowest to highest price.
+
+- **Logging the Sorted Products**: 
+  - Once the array is sorted, the function calls `logMessage()` to print a message indicating that the products are now sorted by price.
+  - It then uses another `forEach()` loop to go through the sorted `combinedArray` and logs each product and its price in the new sorted order.
+
+By using this function, you can easily sort the store's products by price and display the sorted results in a clear format. This approach demonstrates how to manage related data (products and prices) efficiently and how to process and organize it in JavaScript.
+.
 
 
 ---
