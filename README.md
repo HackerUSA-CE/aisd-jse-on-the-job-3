@@ -437,7 +437,6 @@ Here are our store hours for reference: Monday - Friday: 9 AM - 6 PM, Saturday: 
 
 By running this code and reviewing the output, you've successfully simulated an inventory management system with customer-facing updates!
 
-
 ## 11. **Pushing Your Code to GitHub**
 
 In this section, you will save your updated project to the **existing GitHub repository** you created last week. This allows you to continue storing your code online, collaborate with others, and keep track of changes over time.
