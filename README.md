@@ -490,7 +490,7 @@ As you continue to progress, you’ll build on this foundation to create more co
 
 💾 **Not something to copy and paste** 💾
 
-**Note:**  This lab references a solution file located [here](https://github.com/HackerUSA-CE/aisd-jse-on-the-job-2/tree/solution) (link not shown).
+**Note:**  This lab references a solution file located [here](https://github.com/HackerUSA-CE/aisd-jse-on-the-job-3/tree/solution) (link not shown).
 
 
 ---
