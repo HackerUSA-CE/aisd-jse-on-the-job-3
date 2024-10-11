@@ -307,7 +307,8 @@ const sortInventoryByPrice = (products, prices) => {
 };
 ```
 
-### Detailed Explanation for Beginners:
+### Explanation
+
   - **Parameters**: The function takes two arguments: 
     - `products`: an array containing all the products in the store.
     - `prices`: an array of corresponding prices for each product. These arrays are linked by their index, meaning that the price at index 0 in the `prices` array corresponds to the product at index 0 in the `products` array.
