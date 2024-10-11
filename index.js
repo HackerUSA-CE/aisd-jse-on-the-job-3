@@ -1,55 +1,94 @@
 const storeName = "Paws & Claws";
 const storeType = "Pet Store";
 
-const product1 = "Dog Food";
-const product2 = "Cat Litter";
-const product3 = "Bird Seed";
-const product4 = "Fish Tank";
-const product5 = "Hamster Cage";
-
-const price1 = 29.99;
-const price2 = 15.49;
-const price3 = 12.99;
-const price4 = 89.99;
-const price5 = 34.5;
+const products = ["Dog Food", "Cat Litter", "Bird Seed", "Fish Tank", "Hamster Cage"];
+const prices = [29.99, 15.49, 12.99, 89.99, 34.5];
 
 const storeHours = "Monday - Friday: 9 AM - 6 PM, Saturday: 10 AM - 4 PM, Sunday: Closed";
 
-console.log(`Welcome to ${storeName}! We are the best ${storeType} in town.`);
-console.log("Here are the products we currently offer:");
+// Reusable logging function
+const logMessage = (message) => {
+  console.log(message);
+};
 
-// Build arrays from the product and price variables
-let products = [product1, product2, product3, product4, product5];
-let prices = [price1, price2, price3, price4, price5];
+// Function to display store info
+const displayStoreInfo = (name, type) => {
+  logMessage(`Welcome to ${name}! We are the best ${type} in town.`);
+};
 
-// Display the initial product list
-console.log("Products:", products);
-console.log("Prices:", prices);
+// Function to display products and prices
+const displayInventory = (products, prices) => {
+  logMessage("Here are the products we currently offer:");
+  products.forEach((product, index) => {
+    logMessage(`${product}: $${prices[index]}`);
+  });
+};
 
-// Example of push: Add a new product to the store
-products.push("Pet Shampoo");
-prices.push(12.0);
-console.log("We've added a new product! Products:", products);
-console.log("Updated Prices:", prices);
+// Function to add a product
+const addProduct = (products, prices, newProduct, newPrice) => {
+  products.push(newProduct);
+  prices.push(newPrice);
+  logMessage(`We've added a new product! ${newProduct} for $${newPrice}`);
+  displayInventory(products, prices);
+};
 
-// Example of pop: Remove the last product from the store
-products.pop();
-prices.pop();
-console.log("Unfortunately, Pet Shampoo is out of stock. Products:", products);
-console.log("Updated Prices:", prices);
+// Function to remove the last product
+const removeLastProduct = (products, prices) => {
+  const removedProduct = products.pop();
+  const removedPrice = prices.pop();
+  logMessage(`Unfortunately, ${removedProduct} is out of stock.`);
+  displayInventory(products, prices);
+};
 
-// Example of slice: Show a selection of featured products
-let featuredProducts = products.slice(0, 3);
-console.log("This week, our featured products are:", featuredProducts);
+// Function to display featured products (sorted alphabetically)
+const displayFeaturedProducts = (products, numberOfFeatured) => {
+  const sortedProducts = [...products].sort(); // Sorting alphabetically
+  const featuredProducts = [];
 
-// Example of concat: Add new products from a shipment to the store's inventory
-let newProducts = ["Cat Toy", "Dog Leash"];
-let newPrices = [9.99, 14.99];
-products = products.concat(newProducts);
-prices = prices.concat(newPrices);
+  sortedProducts.forEach((product, index) => {
+    if (index < numberOfFeatured) {
+      featuredProducts.push(product);
+    }
+  });
 
-console.log("We have new arrivals! Products:", products);
-console.log("Updated Prices:", prices);
+  logMessage("This week, our featured products are:");
+  featuredProducts.forEach((product) => logMessage(product));
+};
 
-console.log(`Thanks for visiting ${storeName}`);
-console.log(`Here are our store hours for reference: ${storeHours}`);
+// Function to sort products and prices by price (low to high)
+const sortInventoryByPrice = (products, prices) => {
+  // Create an array of objects to link products and prices
+  const combinedArray = [];
+
+  products.forEach((product, index) => {
+    combinedArray.push({ product: product, price: prices[index] });
+  });
+
+  // Sort combined array by price
+  combinedArray.sort((a, b) => a.price - b.price);
+
+  logMessage("Products sorted by price (low to high):");
+  combinedArray.forEach((item) => {
+    logMessage(`${item.product}: $${item.price}`);
+  });
+};
+
+// Initial display
+displayStoreInfo(storeName, storeType);
+displayInventory(products, prices);
+
+// Add new product
+addProduct(products, prices, "Pet Shampoo", 12.0);
+
+// Remove the last product
+removeLastProduct(products, prices);
+
+// Display featured products
+displayFeaturedProducts(products, 3);
+
+// Sort and display products by price
+sortInventoryByPrice(products, prices);
+
+// Closing logs
+logMessage(`Thanks for visiting ${storeName}`);
+logMessage(`Here are our store hours for reference: ${storeHours}`);
