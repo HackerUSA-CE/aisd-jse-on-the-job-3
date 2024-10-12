@@ -1,7 +1,7 @@
 # JavaScript Essentials On the Job 3
 
 ## Project Description 📄
-Welcome back to your **JavaScript Essentials** "On the Job" project! This week, we’ll take what you’ve already built and refactor it using **functions** for better code organization and reusability. In this assignment, we will also be using **modern arrow functions** to make the code more concise and aligned with best practices in modern JavaScript. Additionally, you’ll work with a new set of array methods, including **push**, **pop**, **forEach**, and **sort**, to dynamically manage the store’s products and prices.
+Welcome back to your **JavaScript Essentials** "On the Job" project! This week, we’ll take what you’ve already built and refactor it using **functions** for better code organization and reusability. In this assignment, we will also be using **modern arrow functions** to make the code more concise and aligned with best practices in modern JavaScript. Additionally, you’ll work with a new set of array methods, including **push**, **pop**, **map**, **forEach**, and **sort**, to dynamically manage the store’s products and prices.
 
 Functions will help you reduce repetition in your code and make it easier to update in the future. By the end of this assignment, you’ll have cleaner and more maintainable code that achieves the same functionality as before, but with added efficiency.
 
@@ -10,10 +10,25 @@ Functions will help you reduce repetition in your code and make it easier to upd
   - **Add new items** to the store’s products and prices using the `push` method.
   - **Remove items** from the store’s inventory with the `pop` method.
   - **Sort your products** alphabetically and by price using the `sort` method.
-  - **Display products and prices dynamically** using the `forEach` method.
+  - **Display products and prices dynamically** using the `map()` and `forEach()` methods.
 
 By the end of this assignment, you’ll have hands-on experience refactoring code and dynamically managing a store's inventory system. You’ll also gain insight into how to organize and structure your code more effectively using arrow functions.
 
+## Updated Array Management Using `map()` and `forEach()`
+
+In this assignment, you’ll replace the use of `forEach()` with `map()` in places where it’s appropriate, such as combining products and prices. Using `map()` improves the clarity and efficiency of the code by generating new arrays directly, rather than modifying them manually inside a loop.
+
+- **JavaScript’s Object Property Shorthand**: You’ll also learn how to simplify objects with key-value pairs where the key and value have the same name. For example:
+
+```javascript
+{ product: product, price: prices[i] }
+```
+can be written as:
+```javascript
+{ product, price: prices[i] }
+```
+
+This refactoring ensures that your code is aligned with modern JavaScript practices, making it more readable and maintainable.
 ## Project Scenario 📄
 
 Your code has been reviewed by a senior developer, and they were impressed with your progress! However, they’ve suggested a more efficient way to handle your logic using **functions**. Functions will help you organize your code better, reduce redundancy, and make it easier to update in the future.
@@ -278,58 +293,64 @@ By understanding how to call functions within functions, you’ll see how tasks 
 ---
 
 
-# Step 8: Sorting Products and Prices by Price (Low to High)
+# Step 8: Sorting Products and Prices by Price (Low to High) with `map`
 
-In this step, you will create a function to sort the store’s products and their corresponding prices from low to high. The function will use the arrow function syntax and the `forEach()` method to combine the products and prices into an array of objects, and then it will sort the array by price.
+In this step, you will rewrite the previous function using the `map()` method instead of `forEach()` to combine the products and prices into an array of objects. Using `map()` offers a more concise way to transform arrays and keeps the code cleaner.
 
-### Goal:
-The goal is to write a function called `sortInventoryByPrice()` that takes two parameters: `products` and `prices`. This function will create an array of objects that link each product with its corresponding price, and then sort this array by price in ascending order.
+## Goal:
+The goal is to write a function called `sortInventoryByPrice()` that takes two parameters: `products` and `prices`. This function will use `map()` to create an array of objects that link each product with its corresponding price and then sort this array by price in ascending order.
 
-- [ ] Write a function called `sortInventoryByPrice()` that combines products and prices into an array of objects using the `forEach()` method.
+- [ ] Write a function called `sortInventoryByPrice()` that combines products and prices into an array of objects using the `map()` method.
 
 ```javascript
 // Function to sort products and prices by price (low to high)
 const sortInventoryByPrice = (products, prices) => {
-  // Create an array of objects to link products and prices
-  const combinedArray = [];
+  // Use map() to combine products and prices into an array of objects
+  const combinedArray = products.map((product, i) => ({
+    product,
+    price: prices[i],
+  }));
 
-  products.forEach((product, index) => {
-    combinedArray.push({ product: product, price: prices[index] });
-  });
-
-  // Sort combined array by price
+  // Sort the combined array by price
   combinedArray.sort((a, b) => a.price - b.price);
 
   logMessage("Products sorted by price (low to high):");
   combinedArray.forEach((item) => {
-    logMessage(`${item.product}: $${item.price}`);
+    logMessage(\`\${item.product}: $\${item.price}\`);
   });
 };
 ```
 
-### Explanation
+## Explanation
 
-- **Parameters**: The function takes two arguments: 
-  - `products`: an array containing all the products in the store.
-  - `prices`: an array of corresponding prices for each product. These arrays are linked by their index, meaning the price at index 0 in the `prices` array corresponds to the product at index 0 in the `products` array.
-  
-  By passing these two arrays into the function, both products and their respective prices are managed together.
+### Parameters:  
+The function takes two arguments: 
+- `products`: an array of product names.
+- `prices`: an array of prices corresponding to the products. Each price matches the product at the same index.
 
-- **Combining Products and Prices with `forEach()`**: 
-  - The function uses the `forEach()` method to loop through the `products` array.
-  - For each product in the `products` array, the function retrieves the corresponding price from the `prices` array using the same index.
-  - It then creates an object with two properties: `product` (the product name) and `price` (the product price). These objects are stored in a new array called `combinedArray`, which holds each product and its corresponding price.
+### Combining Products and Prices with `map()`:  
+- The `map()` method loops through the `products` array and transforms each element into a new object that links the product with its corresponding price.
+- Here, the product object uses **JavaScript’s shorthand syntax**. When a key and its value are the same, you can omit the value.  
+  - For example:  
+    ```javascript
+    { product: product, price: prices[i] }
+    ```
+    becomes simply:
+    ```javascript
+    { product, price: prices[i] }
+    ```
+  This shorthand improves readability and conciseness.
 
-- **Sorting by Price**: 
-  - After combining the products and prices, the function uses the `sort()` method to sort the `combinedArray` based on the price.
-  - The sorting function compares the prices of each object in the array (`a.price - b.price`). If the result is negative, `a` will appear before `b`, effectively sorting the array from the lowest to highest price.
+### Sorting by Price:  
+- After combining the products and prices, the function uses the `sort()` method to order the objects in the `combinedArray` by price in ascending order.
+- The comparison function in `sort()` (`a.price - b.price`) ensures the array is sorted from lowest to highest price.
 
-- **Logging the Sorted Products**: 
-  - Once the array is sorted, the function calls `logMessage()` to print a message indicating that the products are now sorted by price.
-  - It then uses another `forEach()` loop to go through the sorted `combinedArray` and logs each product and its price in the new sorted order.
+### Logging the Sorted Products:  
+- Once sorted, the function logs a message indicating the products are sorted by price.
+- It uses `forEach()` to loop through the `combinedArray` and print each product and its price in the new order.
 
-By using this function, you can easily sort the store's products by price and display the sorted results in a clear format. This approach demonstrates how to manage related data (products and prices) efficiently and how to process and organize it in JavaScript.
-.
+This approach simplifies the code by using `map()` to generate the product-price pairs. It also introduces JavaScript’s object shorthand, improving the code’s clarity and efficiency.
+
 
 
 ---
