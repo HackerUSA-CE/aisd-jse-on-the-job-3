@@ -14,19 +14,6 @@ Functions will help you reduce repetition in your code and make it easier to upd
 
 By the end of this assignment, you’ll have hands-on experience refactoring code and dynamically managing a store's inventory system. You’ll also gain insight into how to organize and structure your code more effectively using arrow functions.
 
-## Updated Array Management Using `map()` and `forEach()`
-
-In this assignment, you’ll replace the use of `forEach()` with `map()` in places where it’s appropriate, such as combining products and prices. Using `map()` improves the clarity and efficiency of the code by generating new arrays directly, rather than modifying them manually inside a loop.
-
-
-```javascript
-{ product: product, price: prices[i] }
-```
-can be written as:
-```javascript
-{ product, price: prices[i] }
-```
-
 This refactoring ensures that your code is aligned with modern JavaScript practices, making it more readable and maintainable.
 ## Project Scenario 📄
 
