@@ -18,7 +18,6 @@ By the end of this assignment, you’ll have hands-on experience refactoring cod
 
 In this assignment, you’ll replace the use of `forEach()` with `map()` in places where it’s appropriate, such as combining products and prices. Using `map()` improves the clarity and efficiency of the code by generating new arrays directly, rather than modifying them manually inside a loop.
 
-- **JavaScript’s Object Property Shorthand**: You’ll also learn how to simplify objects with key-value pairs where the key and value have the same name. For example:
 
 ```javascript
 { product: product, price: prices[i] }
@@ -295,63 +294,123 @@ By understanding how to call functions within functions, you’ll see how tasks 
 
 # Step 8: Sorting Products and Prices by Price (Low to High) with `map`
 
-In this step, you will rewrite the previous function using the `map()` method instead of `forEach()` to combine the products and prices into an array of objects. Using `map()` offers a more concise way to transform arrays and keeps the code cleaner.
+In this step, you will implement an optimized way to sort products based on their prices without using objects. This version ensures the relationship between products and prices remains intact by relying on **index-price pairs**. The code is efficient, easy to understand, and avoids unnecessary intermediate arrays.
+
+---
 
 ## Goal:
-The goal is to write a function called `sortInventoryByPrice()` that takes two parameters: `products` and `prices`. This function will use `map()` to create an array of objects that link each product with its corresponding price and then sort this array by price in ascending order.
+The goal is to write a function called `sortInventoryByPrice()` that takes two parameters: `products` and `prices`. This function will use `map()` to create index-price pairs, sort them based on the prices in ascending order, and then display the products with their corresponding prices.
 
-- [ ] Write a function called `sortInventoryByPrice()` that combines products and prices into an array of objects using the `map()` method.
+- [ ] Write a function called `sortInventoryByPrice()` that sorts products and prices efficiently without using objects.
+
+---
+
+### Code Implementation:
 
 ```javascript
 // Function to sort products and prices by price (low to high)
 const sortInventoryByPrice = (products, prices) => {
-  // Use map() to combine products and prices into an array of objects
-  const combinedArray = products.map((product, i) => ({
-    product,
-    price: prices[i],
-  }));
-
-  // Sort the combined array by price
-  combinedArray.sort((a, b) => a.price - b.price);
+  // Generate an array of [index, price] pairs and sort by price
+  const sortedPairs = prices
+    .map((price, i) => [i, price]) // Create pairs of [index, price]
+    .sort((a, b) => a[1] - b[1]); // Sort pairs by price
 
   logMessage("Products sorted by price (low to high):");
-  combinedArray.forEach((item) => {
-    logMessage(\`\${item.product}: $\${item.price}\`);
+  sortedPairs.forEach(([i]) => {
+    logMessage(`${products[i]}: $${prices[i]}`);
   });
 };
 ```
 
+---
+
 ## Explanation
 
-### Parameters:  
-The function takes two arguments: 
-- `products`: an array of product names.
-- `prices`: an array of prices corresponding to the products. Each price matches the product at the same index.
+### Parameters:
+- **`products`**: An array of product names.
+- **`prices`**: An array of prices corresponding to each product by index.
 
-### Combining Products and Prices with `map()`:  
-- The `map()` method loops through the `products` array and transforms each element into a new object that links the product with its corresponding price.
-- Here, the product object uses **JavaScript’s shorthand syntax**. When a key and its value are the same, you can omit the value.  
-  - For example:  
-    ```javascript
-    { product: product, price: prices[i] }
-    ```
-    becomes simply:
-    ```javascript
-    { product, price: prices[i] }
-    ```
-  This shorthand improves readability and conciseness.
+---
 
-### Sorting by Price:  
-- After combining the products and prices, the function uses the `sort()` method to order the objects in the `combinedArray` by price in ascending order.
-- The comparison function in `sort()` (`a.price - b.price`) ensures the array is sorted from lowest to highest price.
+### Step-by-Step Explanation:
 
-### Logging the Sorted Products:  
-- Once sorted, the function logs a message indicating the products are sorted by price.
-- It uses `forEach()` to loop through the `combinedArray` and print each product and its price in the new order.
+1. **Generating Index-Price Pairs with `map()`:**
+   - The `map()` method transforms the `prices` array into an array of **[index, price] pairs**.
+     ```javascript
+     prices.map((price, i) => [i, price]);
+     ```
+   - For example, if `prices = [10, 5, 15]`, the generated pairs will be:
+     ```javascript
+     [[0, 10], [1, 5], [2, 15]]
+     ```
+   - Each pair contains:
+     - **The index** of the product/price in the original array.
+     - **The price** associated with that product.
 
-This approach simplifies the code by using `map()` to generate the product-price pairs. It also introduces JavaScript’s object shorthand, improving the code’s clarity and efficiency.
+2. **Sorting the Pairs by Price:**
+   - We use `sort()` on the array of pairs. The `sort()` function compares the **second element** (the price) in each pair to order them in ascending price:
+     ```javascript
+     .sort((a, b) => a[1] - b[1]);
+     ```
+   - After sorting, the pairs might look like:
+     ```javascript
+     [[1, 5], [0, 10], [2, 15]];
+     ```
+   - This keeps the original product-price relationship intact through the index.
 
+3. **Displaying the Sorted Products with `forEach()`:**
+   - Once sorted, we use `forEach()` to loop through the sorted pairs:
+     ```javascript
+     sortedPairs.forEach(([i]) => {
+       logMessage(`${products[i]}: $${prices[i]}`);
+     });
+     ```
+   - **Destructuring** each pair as `[i]` gives us access to the index. We use this index to retrieve the corresponding product and price from the original arrays.
 
+---
+
+### Why This Works
+
+- **Indices Maintain Relationships:**  
+  By pairing prices with their indices, we avoid mixing data and keep the relationship between products and prices intact.
+
+- **Efficient Sorting:**  
+  Sorting the array of pairs ensures that we only traverse the data once, making it more efficient than creating multiple arrays.
+
+- **Readable and Simple Code:**  
+  The code avoids unnecessary complexity, making it easy to follow and understand. The use of **array destructuring** further improves readability.
+
+---
+
+### Example Output:
+
+Given the following inputs:
+
+```javascript
+const products = ["Product A", "Product B", "Product C"];
+const prices = [10, 5, 15];
+```
+
+The output will be:
+
+```
+Products sorted by price (low to high):
+Product B: $5
+Product A: $10
+Product C: $15
+```
+
+---
+
+### Key Points to Remember:
+1. **`map()` is used to generate index-price pairs:**  
+   This helps maintain the relationship between products and prices during sorting.
+   
+2. **`sort()` compares the prices directly:**  
+   We sort by comparing the second element of each pair (the price).
+
+3. **Destructuring in `forEach()` ensures clarity:**  
+   Extracting the index directly from each pair helps us retrieve the matching product and price from the original arrays.
 
 ---
 

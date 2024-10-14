@@ -55,20 +55,17 @@ const displayFeaturedProducts = (products, numberOfFeatured) => {
   featuredProducts.forEach((product) => logMessage(product));
 };
 
-// Function to sort products and prices by price (low to high)
+// Function to sort products and prices by price (low to high) without using objects
 const sortInventoryByPrice = (products, prices) => {
-  // Use map() to combine products and prices into an array of objects
-  const combinedArray = products.map((product, index) => ({
-    product,
-    price: prices[index],
-  }));
-
-  // Sort the combined array by price
-  combinedArray.sort((a, b) => a.price - b.price);
+  // Generate an array of [index, price] pairs and sort them by price
+  const sortedPairs = prices
+    .map((price, index) => [index, price]) // Create [index, price] pairs
+    .sort((a, b) => a[1] - b[1]); // Sort pairs by price
 
   logMessage("Products sorted by price (low to high):");
-  combinedArray.forEach((item) => {
-    logMessage(`${item.product}: $${item.price}`);
+  // Use the sorted pairs to display the products and prices
+  sortedPairs.forEach(([i]) => {
+    logMessage(`${products[i]}: $${prices[i]}`);
   });
 };
 
